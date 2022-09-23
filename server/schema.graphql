@@ -1,0 +1,402 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  books(orderBy: [BookOrderByInput!], skip: Float, take: Float, where: BookWhereInput): [Book!]!
+  createdAt: DateTime!
+  fullName: String
+  id: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input AuthorCreateInput {
+  books: BookCreateNestedManyWithoutAuthorsInput
+  fullName: String
+  user: UserWhereUniqueInput
+}
+
+input AuthorOrderByInput {
+  createdAt: SortOrder
+  fullName: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input AuthorUpdateInput {
+  books: BookUpdateManyWithoutAuthorsInput
+  fullName: String
+  user: UserWhereUniqueInput
+}
+
+input AuthorWhereInput {
+  books: BookListRelationFilter
+  fullName: StringNullableFilter
+  id: StringFilter
+  user: UserWhereUniqueInput
+}
+
+input AuthorWhereUniqueInput {
+  id: String!
+}
+
+type Book {
+  author: Author
+  createdAt: DateTime!
+  genres(orderBy: [GenreOrderByInput!], skip: Float, take: Float, where: GenreWhereInput): [Genre!]!
+  id: String!
+  updatedAt: DateTime!
+}
+
+input BookCreateInput {
+  author: AuthorWhereUniqueInput
+  genres: GenreCreateNestedManyWithoutBooksInput
+}
+
+input BookCreateNestedManyWithoutAuthorsInput {
+  connect: [BookWhereUniqueInput!]
+}
+
+input BookCreateNestedManyWithoutGenresInput {
+  connect: [BookWhereUniqueInput!]
+}
+
+input BookListRelationFilter {
+  every: BookWhereInput
+  none: BookWhereInput
+  some: BookWhereInput
+}
+
+input BookOrderByInput {
+  authorId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input BookUpdateInput {
+  author: AuthorWhereUniqueInput
+  genres: GenreUpdateManyWithoutBooksInput
+}
+
+input BookUpdateManyWithoutAuthorsInput {
+  connect: [BookWhereUniqueInput!]
+  disconnect: [BookWhereUniqueInput!]
+  set: [BookWhereUniqueInput!]
+}
+
+input BookUpdateManyWithoutGenresInput {
+  connect: [BookWhereUniqueInput!]
+  disconnect: [BookWhereUniqueInput!]
+  set: [BookWhereUniqueInput!]
+}
+
+input BookWhereInput {
+  author: AuthorWhereUniqueInput
+  genres: GenreListRelationFilter
+  id: StringFilter
+}
+
+input BookWhereUniqueInput {
+  id: String!
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Genre {
+  books(orderBy: [BookOrderByInput!], skip: Float, take: Float, where: BookWhereInput): [Book!]!
+  createdAt: DateTime!
+  id: String!
+  updatedAt: DateTime!
+}
+
+input GenreCreateInput {
+  books: BookCreateNestedManyWithoutGenresInput
+}
+
+input GenreCreateNestedManyWithoutBooksInput {
+  connect: [GenreWhereUniqueInput!]
+}
+
+input GenreListRelationFilter {
+  every: GenreWhereInput
+  none: GenreWhereInput
+  some: GenreWhereInput
+}
+
+input GenreOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input GenreUpdateInput {
+  books: BookUpdateManyWithoutGenresInput
+}
+
+input GenreUpdateManyWithoutBooksInput {
+  connect: [GenreWhereUniqueInput!]
+  disconnect: [GenreWhereUniqueInput!]
+  set: [GenreWhereUniqueInput!]
+}
+
+input GenreWhereInput {
+  books: BookListRelationFilter
+  id: StringFilter
+}
+
+input GenreWhereUniqueInput {
+  id: String!
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createAuthor(data: AuthorCreateInput!): Author!
+  createBook(data: BookCreateInput!): Book!
+  createGenre(data: GenreCreateInput!): Genre!
+  createRole(data: RoleCreateInput!): Role!
+  createUser(data: UserCreateInput!): User!
+  deleteAuthor(where: AuthorWhereUniqueInput!): Author!
+  deleteBook(where: BookWhereUniqueInput!): Book!
+  deleteGenre(where: GenreWhereUniqueInput!): Genre!
+  deleteRole(where: RoleWhereUniqueInput!): Role!
+  deleteTest(where: TestWhereUniqueInput!): Test!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateAuthor(data: AuthorUpdateInput!, where: AuthorWhereUniqueInput!): Author!
+  updateBook(data: BookUpdateInput!, where: BookWhereUniqueInput!): Book!
+  updateGenre(data: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre!
+  updateRole(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Query {
+  _authorsMeta(orderBy: [AuthorOrderByInput!], skip: Float, take: Float, where: AuthorWhereInput): MetaQueryPayload!
+  _booksMeta(orderBy: [BookOrderByInput!], skip: Float, take: Float, where: BookWhereInput): MetaQueryPayload!
+  _genresMeta(orderBy: [GenreOrderByInput!], skip: Float, take: Float, where: GenreWhereInput): MetaQueryPayload!
+  _rolesMeta(orderBy: [RoleOrderByInput!], skip: Float, take: Float, where: RoleWhereInput): MetaQueryPayload!
+  _testsMeta(orderBy: [TestOrderByInput!], skip: Float, take: Float, where: TestWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  author(where: AuthorWhereUniqueInput!): Author
+  authors(orderBy: [AuthorOrderByInput!], skip: Float, take: Float, where: AuthorWhereInput): [Author!]!
+  book(where: BookWhereUniqueInput!): Book
+  books(orderBy: [BookOrderByInput!], skip: Float, take: Float, where: BookWhereInput): [Book!]!
+  genre(where: GenreWhereUniqueInput!): Genre
+  genres(orderBy: [GenreOrderByInput!], skip: Float, take: Float, where: GenreWhereInput): [Genre!]!
+  role(where: RoleWhereUniqueInput!): Role
+  roles(orderBy: [RoleOrderByInput!], skip: Float, take: Float, where: RoleWhereInput): [Role!]!
+  test(where: TestWhereUniqueInput!): Test
+  tests(orderBy: [TestOrderByInput!], skip: Float, take: Float, where: TestWhereInput): [Test!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type Role {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+input RoleCreateInput {
+  name: String!
+  users: UserCreateNestedManyWithoutRolesInput
+}
+
+input RoleCreateNestedManyWithoutUsersInput {
+  connect: [RoleWhereUniqueInput!]
+}
+
+input RoleListRelationFilter {
+  every: RoleWhereInput
+  none: RoleWhereInput
+  some: RoleWhereInput
+}
+
+input RoleOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input RoleUpdateInput {
+  name: String
+  users: UserUpdateManyWithoutRolesInput
+}
+
+input RoleUpdateManyWithoutUsersInput {
+  connect: [RoleWhereUniqueInput!]
+  disconnect: [RoleWhereUniqueInput!]
+  set: [RoleWhereUniqueInput!]
+}
+
+input RoleWhereInput {
+  id: StringFilter
+  name: StringFilter
+  users: UserListRelationFilter
+}
+
+input RoleWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type Test {
+  createdAt: DateTime!
+  id: String!
+  updatedAt: DateTime!
+}
+
+input TestOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input TestWhereInput {
+  id: StringFilter
+}
+
+input TestWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  author: Author
+  createdAt: DateTime!
+  firstName: String
+  id: String!
+  lastName: String
+  roles: JSONObject!
+  roles2(orderBy: [RoleOrderByInput!], skip: Float, take: Float, where: RoleWhereInput): [Role!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  author: AuthorWhereUniqueInput
+  firstName: String
+  lastName: String
+  password: String!
+  roles: JSONObject!
+  roles2: RoleCreateNestedManyWithoutUsersInput
+  username: String!
+}
+
+input UserCreateNestedManyWithoutRolesInput {
+  connect: [UserWhereUniqueInput!]
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserListRelationFilter {
+  every: UserWhereInput
+  none: UserWhereInput
+  some: UserWhereInput
+}
+
+input UserOrderByInput {
+  authorId: SortOrder
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  author: AuthorWhereUniqueInput
+  firstName: String
+  lastName: String
+  password: String
+  roles: JSONObject
+  roles2: RoleUpdateManyWithoutUsersInput
+  username: String
+}
+
+input UserUpdateManyWithoutRolesInput {
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+}
+
+input UserWhereInput {
+  author: AuthorWhereUniqueInput
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  roles2: RoleListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
