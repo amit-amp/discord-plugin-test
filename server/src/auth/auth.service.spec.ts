@@ -10,10 +10,12 @@ import { PasswordService } from "./password.service";
 import { TokenService } from "./token.service";
 
 const VALID_CREDENTIALS: Credentials = {
+  id: "cl7qmjh4h0000tothyjqapgj5",
   username: "Valid User",
   password: "Valid User Password",
 };
 const INVALID_CREDENTIALS: Credentials = {
+  id: "cl7qmjh4h0000tothyjqapgj5",
   username: "Invalid User",
   password: "Invalid User Password",
 };
@@ -21,7 +23,7 @@ const USER: any = {
   ...VALID_CREDENTIALS,
   createdAt: new Date(),
   firstName: "ofek",
-  id: "1",
+  id: "cl7qmjh4h0000tothyjqapgj5",
   lastName: "gabay",
   roles: ["admin"],
   updatedAt: new Date(),
